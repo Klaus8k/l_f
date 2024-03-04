@@ -10,16 +10,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_config.config.secret_key
+SECRET_KEY = get_config().secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_config.config.secret_key
+DEBUG = get_config().debug
 
 ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -63,10 +62,17 @@ WSGI_APPLICATION = 'l_f.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+USER = get_config().db_user
+PASSWORD = get_config().db_pass
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'l_f_db',
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
