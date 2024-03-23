@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'l_f_db',
         'USER': USER,
         'PASSWORD': PASSWORD,
-        'HOST': 'localhost',
+        'HOST': '79.133.181.123',
         'PORT': '5432',
     }
 }
