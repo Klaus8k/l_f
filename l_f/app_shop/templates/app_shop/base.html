@@ -7,34 +7,33 @@
   {% endblock %}
 
   <meta charset="UTF-8" />
-  {% comment %} <meta http-equiv="X-UA-Compatible" content="IE=edge" /> {% endcomment %}
-  {% comment %} <meta name="yandex-verification" content="5fccdfbbfd32f5b2" /> {% endcomment %}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="yandex-verification" content="5fccdfbbfd32f5b2" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="{% static 'app_shop' %}" type="image/x-icon" />
-  <link rel="stylesheet" type="text/css" href="{% static 'tipkor/css/bootstrap.min.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'tipkor/css/tipkor.css' %}" />
+  <link rel="icon" href="{% static 'app_shop/img/favicon.ico' %}" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="{% static 'app_shop/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'app_shop/css/base.css' %}" />
 </head>
 
-<html>
-  <head>
-    <title>
-      {% block title %}
-        Тушкан
-      {% endblock %}
-    </title>
-    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="header">
-      <a href="/" class="logo">Главная</a>
-    </div>
-    <div id="subheader">
-      <div class="cart">Ваша корзина пуста</div>
-    </div>
-    <div id="content">
-      {% block content %}
 
-      {% endblock %}
-    </div>
-  </body>
-</html>
+<head>
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="header">
+    <a href="/" class="logo">Главная</a>
+  </div>
+  <div id="subheader">
+    <div class="cart">Ваша корзина пуста</div>
+  </div>
+  <div id="content">
+    {% block content %}
+
+    {% endblock %}
+  </div>
+</body>
