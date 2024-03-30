@@ -36,24 +36,30 @@
     {% endif %}
   </h3>
 
-  {% for product in products %}
-
-  <div class="card" style="width: 18rem;">
-    <img src="{% if product.image %}
-    {{ product.image.url }}
-  {% else %}
-    {% static 'app_shop/img/no_image.png' %}
-  {% endif %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h4 class="card-title">{{ product.name }}</h4>
-      <p class="card-text">Состав: {{ product.description }}</p>
-      <h6 class="card-text">Цена: {{ product.price }} руб.</h6>
-      <h6 class="card-text">вес/наличие</h6>
-      <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Детали</a>
+</div>
+<div class="container">
+  <div class="row row-col-4">
+    {% for product in products %}
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="{% if product.image %}
+                  {{ product.image.url }}
+                  {% else %}
+                  {% static 'app_shop/img/no_image.png' %}
+                  {% endif %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h4 class="card-title">{{ product.name }}</h4>
+          <p class="card-text">Состав: {{ product.description }}</p>
+          <h6 class="card-text">Цена: {{ product.price }} руб.</h6>
+          <h6 class="card-text">вес/наличие</h6>
+          <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Детали</a>
+        </div>
+      </div>
     </div>
+    {% endfor %}
   </div>
+</div>
 
-  {% endfor %}
 
 </div>
 

@@ -1,0 +1,28 @@
+{% extends "app_shop/base.html" %}
+{% load static %}
+
+{% block title %}
+{% if category %}
+{{ category.title }}
+{% else %}Products
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h6>категория: <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h6>
+<br>
+<div class="product-detail">
+    <img src="{% if product.image %}
+                {{ product.image.url }}
+                {% else %}
+                {% static 'app_shop/no_image.png' %}
+                {% endif %}">
+    <h1>{{ product.name }}</h1>
+    <!-- <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2> -->
+    <h7 class="price">{{ product.description }}</h7>
+    <h6 class="price">Вес: {{ product.netto }}г.</h6>
+    <h4 class="price">1шт - {{ product.price }} руб.</h4>
+    <a role="button" href="#" class="btn btn-primary px-5">В корзину</a>
+
+</div>
+{% endblock %}
