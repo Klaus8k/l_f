@@ -7,4 +7,21 @@
     },
 
     "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+    "beautify.language": {
+        
+        "css": [
+            "css",
+            "less",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html",
+            "django-html",
+            "php",
+            "blade.php"
+        ]
+        
+    }
 }

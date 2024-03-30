@@ -16,13 +16,12 @@ class Category(models.Model):
 
     def __str__(self):
         return str(self.name)
-    
+
     def get_absolute_url(self):
         """
         Returns the url to access a specific product.
         """
         return reverse('app_shop:product_list_by_category', args=[self.slug])
-    
 
 
 class Product(models.Model):
@@ -44,7 +43,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse('app_shop:product_detail',
-                        args=[self.id, self.slug])
+                       args=[self.id,  self.slug])

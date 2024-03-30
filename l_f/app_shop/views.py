@@ -8,7 +8,7 @@ from .models import Category, Product
 
 def product_list(request, category_slug=None):
     """
-    Renders the product list view.
+    Renders the product list view. 
 
     Args:
         request (HttpRequest): The current request.

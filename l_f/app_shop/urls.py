@@ -8,6 +8,6 @@ urlpatterns = [
     path('<slug:category_slug>/', view=product_list,
          name='product_list_by_category'),
     # path('<int:product_id>/', view=product_detail, name='product_detail'),
-    # path('<slug:product_slug>/', view=product_detail, name='product_detail'),
-    re_path(r'^', view=product_detail, name='product_detail'),
+    re_path(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$',
+            view=product_detail, name='product_detail'),
 ]
