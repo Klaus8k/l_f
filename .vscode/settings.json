@@ -1,10 +1,14 @@
 {
     "errorLens.enabled": false,
 
+
     "[python]": {
         "editor.formatOnType": true,
-        "editor.defaultFormatter": "ms-python.autopep8"
+        "editor.defaultFormatter": "ms-python.autopep8",
+        
     },
+
+
 
     "terminal.integrated.defaultProfile.windows": "Git Bash",
 
