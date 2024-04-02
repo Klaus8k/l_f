@@ -8,7 +8,7 @@ class Cart:
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
-            cart = self.session[session.CART_SESSION_ID] = {}
+            cart = self.session[settings.CART_SESSION_ID] = {}
 
         self.cart = cart
 
@@ -17,10 +17,9 @@ class Cart:
 
         Args:
             product (_type_): _description_
-            quntity (int, optional): _description_. Defaults to 1.
+            quantity (int, optional): _description_. Defaults to 1.
             update_quantity (bool, optional): _description_. Defaults to False.
         """
-
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
@@ -53,7 +52,7 @@ class Cart:
         for product in products:
             self.cart[str(product.id)]['product'] = product
 
-        for intem in self.cart.values():
+        for item in self.cart.values():
             item['price'] = int(item['price'])
             item['total_price'] = item['price'] * item['quantity']
             yield item
