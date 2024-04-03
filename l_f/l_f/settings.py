@@ -16,7 +16,7 @@ SECRET_KEY = get_config().secret_key
 DEBUG = get_config().debug
 
 ALLOWED_HOSTS = ['*',]
-
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 # Application definition
 INSTALLED_APPS = [
