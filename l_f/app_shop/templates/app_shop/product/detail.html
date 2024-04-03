@@ -28,9 +28,9 @@
 
     <p class="price">${{ product.price }}</p>
 
-    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+    <form action="{% url 'cart:cart_add' product.id %}" method="post" {% csrf_token %}>
       {{ cart_product_form }}
-      {% csrf_token %}
+      <!-- {% csrf_token %} -->
       <input class="btn btn-primary px-5" type="submit" value="В корзину" />
     </form>
   </div>
