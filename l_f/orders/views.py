@@ -1,0 +1,26 @@
+from django.shortcuts import render
+from .models import Order, OrderItem
+from .forms import OrderCreateForm
+from cart.models import Cart
+
+
+def order_create(request):
+
+    cart = Cart(request)
+
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
+            for item in cart:
+                OrderItem.objects.create(
+                    order=order, product=item, quantity=item.quantity)
+
+            cart.clear()
+            return render(request, 'success.html', {'form': form})
+    else:
+        form = OrderCreateForm()
+    return render(request, 'order_create.html', {'cart': cart,
+                                                 'form': form})
