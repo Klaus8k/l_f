@@ -16,7 +16,7 @@ SECRET_KEY = get_config().secret_key
 DEBUG = get_config().debug
 
 ALLOWED_HOSTS = ['*',]
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
+CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
