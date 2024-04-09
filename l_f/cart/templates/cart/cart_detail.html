@@ -85,7 +85,9 @@
     <div class="div">
       <p class="text-right">
         <a href="{% url 'app_shop:product_list' %}" class="button light">Продолжить покупки</a>
-        <a href="#" class="button">Checkout</a>
+        <a href="{% url 'orders:order_create' %}" class="button">
+          Checkout
+        </a>
       </p>
     </div>
   </div>
