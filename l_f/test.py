@@ -1,23 +1,54 @@
-nickname = input()
-len_name = len(nickname) >= 8
-num_name = [i.isdigit() for i in nickname]
-alfa_name = [i.isalpha() for i in nickname]
-lower_name = [i.islower() for i in nickname]
-upper_name = [i.isupper() for i in nickname]
+a = 'hellochild'
+b = 'helto<left><bspace>l<delete>ochilds<bspace>'
+b = 'ooo<left><left>l<left><bspace>l'
+b = '<left><left><left><bspace>ooo<bspace>aaaaaa<left><left><left>o<right>е<delete><delete><delete><delete><right><right><right><delete>'
 
+res = []
+pos = pos_res = 0
 
-def check_rules(data: list):
-    count = 0
-    for i in data:
-        if i == False:
-            count += 1
-    if len(data) == count:
-        return False
-    else:
-        return True
+while True:
+    
+    if pos > len(b)-1:
+        break
+    
+    if b[pos].isalpha():
+        res.insert(pos_res, b[pos])
+        pos += 1
+        pos_res += 1
+  
+    if b[pos:pos+2] == '<b':
+        if pos_res != 0:
+            pos += 8
+            pos_res -= 1
+            del res[pos_res]
+        else:
+            pos += 8
+            continue
 
+    elif b[pos:pos+2] == '<d':
+        print(pos_res, res)
+        if pos_res <= len(res)-1:
+            pos += 8
+            del res[pos_res]
+        else:
+            pos += 8
+            continue
+        
+    elif b[pos:pos+2] == '<l':
+        if pos_res != 0:
+            pos_res -= 1
+            pos += 6
+        else:
+            pos += 6
+            continue
+        
+    elif b[pos:pos+2] == '<r':
+        if pos_res <= len(res)-2:
+            pos_res += 1
+            pos += 7
+        else:
+            pos += 7
+            continue
+        
 
-rules_list = [[len_name,], num_name, alfa_name, lower_name, upper_name]
-result = [check_rules(i) for i in rules_list]
-
-print('YES' if all(result) else 'NO')
+print(res)
