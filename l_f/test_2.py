@@ -1,62 +1,29 @@
-# a = input()
-# b = input()
-a = 'hellochild'
-b = 'helto<left><bspace>l<delete>ochilds<bspace>'
-# control = ['<delete>', '<bspace>', '<left>', '<right>',]
-# test = 'lorem ipsum'
-
-def delete_letter(a: str, pos: int):
-    if len(a) == pos:
-        return [a, pos]
-    else:
-        a = a[:pos+1] + a[pos+2:]
-        return [a, pos]
-    
-def bspace_letter(a: str, pos: int):
-    if pos == 0:
-        return [a, pos]
-    else:
-        pos -= 1
-        a = a[:pos] + a[pos+1:]
-        return [a, pos]
-    
-def direction_l(a: str, pos: int):
-    if pos == 0:
-        return [a, pos]
-    else:
-        return[a, pos-1]
-
-def direction_r(a: str, pos: int):
-    if pos == len(a):
-        return a, pos
-    else:
-        return [a, pos+1]
-    
+from typing import *
 
 
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        a = b = 0
+        ref = [nums[0],]
+        
+        for i in range(len(nums)):
+            if nums[a] in ref:
+                nums[a] = nums[a]+1
+            else:
+                
+                ref.append(nums[i])
+                a += 1
+        print(nums)
 
-res = None
-pos_res = pos = 0
+        return b
 
-for i in b:
-    
-    if i.isalpha():
-        res += i
-    
-    elif a[pos:pos+2] == '<d':
-        a = a[:pos] + a[pos+8:]
-        return delete_letter(a, pos)
-    
-    elif a[pos:pos+2] == '<b':
-        a = a[:pos] + a[pos+8:]
-        return bspace_letter(a, pos)
-    
-    elif a[pos:pos+2] == '<l':
-        a = a[:pos] + a[pos+6:]
-        return direction_l(a, pos)
-    elif a[pos:pos+2] == '<r':
-        a = a[:pos] + a[pos+7:]
-        return direction_r(a, pos)
+        # set_nums = set(nums)
+        # len_nums = len(nums)
+        # nums = sorted(list(set_nums))
 
+        # add_list = ['_' for i in range(len_nums - len(set_nums))]
+        # return len(nums), nums + add_list
 
 
+nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+print(Solution().removeDuplicates(nums))
