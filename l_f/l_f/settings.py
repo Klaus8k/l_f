@@ -19,6 +19,11 @@ ALLOWED_HOSTS = ['*',]
 CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
