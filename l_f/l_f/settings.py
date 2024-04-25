@@ -19,6 +19,7 @@ ALLOWED_HOSTS = ['*',]
 CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -133,3 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
+
+EMAIL_HOST = 'localhost'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

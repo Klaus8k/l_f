@@ -12,6 +12,8 @@ class Config_dj():
     debug: str = conf_dict['DEBUG']
     db_user: str = conf_dict['DJ_DB_USER']
     db_pass: str = conf_dict['DJ_DB_PASS']
+    
+    conf_dict = conf_dict
 
 
 def get_config():
