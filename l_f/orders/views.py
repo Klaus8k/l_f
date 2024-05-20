@@ -23,6 +23,6 @@ def order_create(request):
             order_created.delay(order.id)
             return render(request, 'orders/created.html', {'order': order})
     else:
-        form = OrderCreateForm() - в форму передать, значения юзера
+        form = OrderCreateForm()
     return render(request, 'orders/create.html', {'cart': cart,
                                                  'form': form})

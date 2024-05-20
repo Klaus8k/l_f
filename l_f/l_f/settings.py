@@ -19,6 +19,9 @@ ALLOWED_HOSTS = ['*',]
 CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 # Application definition
 INSTALLED_APPS = [
