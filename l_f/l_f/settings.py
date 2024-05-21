@@ -19,13 +19,15 @@ ALLOWED_HOSTS = ['*',]
 CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-LOGIN_REDIRECT_URL = 'dashboard'
+
+from django.urls import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
 # Application definition
 INSTALLED_APPS = [
-    'account.apps.AccountConfig',
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
