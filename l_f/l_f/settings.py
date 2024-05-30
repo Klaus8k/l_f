@@ -22,8 +22,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 from django.urls import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+# LOGIN_URL = 'login'
+# LOGOUT_URL = 'logout'
 
 # Application definition
 INSTALLED_APPS = [
