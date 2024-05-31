@@ -27,6 +27,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 
 # Application definition
 INSTALLED_APPS = [
+    'celery',
     'account',
     'django.contrib.admin',
     'django.contrib.auth',
