@@ -5,6 +5,12 @@ from .forms import LoginForm
 
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth import views as auth_views
+
+from .forms import ChangePasswordForm_ru
+
+
+
 
 @login_required
 def dashboard(request):
@@ -32,3 +38,6 @@ def user_login(request):
     else:
         form = LoginForm()
         return render(request, 'account/login.html', {'form': form})
+
+class ChangePassword_ru(auth_views.PasswordChangeView):
+    form_class = ChangePasswordForm_ru
