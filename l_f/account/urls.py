@@ -36,12 +36,10 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
 
-
-
-
-
-
     # страница аккаунта в дашборде (то есть страница профиля)
-    path('dashboard/', views.dashboard, name='dashboard')
+    path('dashboard/', views.dashboard, name='dashboard'),
+    
+    path('register/', views.register, name='register'),
+
 
 ]

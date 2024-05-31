@@ -1,5 +1,6 @@
 from django.db import models
 from app_shop.models import Product
+from django.contrib.auth.models import User
 
 
 class Order(models.Model):
