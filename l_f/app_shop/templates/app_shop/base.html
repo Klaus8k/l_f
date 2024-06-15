@@ -52,12 +52,8 @@
 {{ request.user.first_name|default:request.user.username }},
 <a href="{% url 'account:logout' %}">Выйти</a>
 {% else %}
-<<<<<<<<< Temporary merge branch 1
-<a href="{% url 'account:login' %}">Log-in</a>
-<a href="{% url 'account:register' %}">Register</a>
-=========
+<a href="{% url 'account:register' %}">Регистрация</a>
 <a href="{% url 'account:login' %}">Войти</a>
->>>>>>>>> Temporary merge branch 2
 {% endif %}
 </span>
       </div>
