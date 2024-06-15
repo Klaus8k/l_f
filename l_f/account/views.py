@@ -11,8 +11,6 @@ from django.contrib.auth import views as auth_views
 from .forms import ChangePasswordForm_ru
 
 
-
-
 @login_required
 def dashboard(request):
     return render(request,
@@ -41,7 +39,6 @@ def user_login(request):
         form = LoginForm()
         return render(request, 'account/login.html', {'form': form})
 
-<<<<<<<<< Temporary merge branch 1
 
 def register(request):
 
@@ -57,14 +54,14 @@ def register(request):
             # Сохранить объект User
             new_user.save()
             return render(request,
-                        'account/register_done.html',
-                        {'new_user': new_user})
+                          'account/register_done.html',
+                          {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request,
                   'account/register.html',
                   {'user_form': user_form})
-=========
+
+
 class ChangePassword_ru(auth_views.PasswordChangeView):
     form_class = ChangePasswordForm_ru
->>>>>>>>> Temporary merge branch 2
