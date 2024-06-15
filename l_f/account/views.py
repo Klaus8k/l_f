@@ -41,6 +41,7 @@ def user_login(request):
         form = LoginForm()
         return render(request, 'account/login.html', {'form': form})
 
+<<<<<<<<< Temporary merge branch 1
 
 def register(request):
 
@@ -63,3 +64,7 @@ def register(request):
     return render(request,
                   'account/register.html',
                   {'user_form': user_form})
+=========
+class ChangePassword_ru(auth_views.PasswordChangeView):
+    form_class = ChangePasswordForm_ru
+>>>>>>>>> Temporary merge branch 2
