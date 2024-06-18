@@ -20,8 +20,15 @@ CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
+from django.urls import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
+# LOGIN_URL = 'login'
+# LOGOUT_URL = 'logout'
+
 # Application definition
 INSTALLED_APPS = [
+    'celery',
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,6 +38,7 @@ INSTALLED_APPS = [
     'app_shop',
     'cart',
     'orders',
+    
 ]
 
 MIDDLEWARE = [
@@ -88,6 +96,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -98,16 +107,16 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 

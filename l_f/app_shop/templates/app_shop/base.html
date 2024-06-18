@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
 {% block title %}
+
 {% endblock %}
 
 <head>
   {% block title_meta %}
+
   {% endblock %}
-
-
 
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,31 +22,46 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
-
 <body>
-
-
+  <a href="/">ГЛАВНАЯ</a>
 
   <div class="container pt-4">
-    <div class="top_line row bg-light shadow border  rounded p-3">
-      <div class="session_cart col-12">
+    <div class="top_line row bg-light shadow border rounded p-3">
+      <div class="session_cart col-6">
         {% with total_items=cart|length %}
-        {% if cart|length > 0 %}
-        <h5>Корзина: </h5>
-        <a href="{% url 'cart:cart_detail' %}">
-          {{ total_items }} шт., на {{ cart.get_total_price }} руб.
-        </a>
-        {% else %}
-        Ваша корзина пуста.
-        {% endif %}
+          {% if cart|length > 0 %}
+            <h5>Корзина:</h5>
+            <a href="{% url 'cart:cart_detail' %}">{{ total_items }} шт., на {{ cart.get_total_price }} руб.</a>
+          {% else %}
+            Ваша корзина пуста.
+          {% endif %}
         {% endwith %}
+      </div>
+      <div class="user_info col-6">
+        <span class="logo">Аккаунт</span>
+{% if request.user.is_authenticated %}
+  <ul class="menu">
+    <li {% if section == "dashboard" %} class="selected" {% endif %}>
+
+    <a href="{% url 'account:dashboard' %}">Личный кабинет</a>
+    </li>
+</ul>
+{% endif %}
+<span class="user">
+{% if request.user.is_authenticated %}
+{{ request.user.first_name|default:request.user.username }},
+<a href="{% url 'account:logout' %}">Выйти</a>
+{% else %}
+<a href="{% url 'account:register' %}">Регистрация</a>
+<a href="{% url 'account:login' %}">Войти</a>
+{% endif %}
+</span>
       </div>
     </div>
   </div>
 
   <div class="container pt-4">
     <div class="top_line row bg-light shadow border d-flex justify-content-center align-items-center rounded p-3">
-
       <div id="content">
         {% block content %}
 

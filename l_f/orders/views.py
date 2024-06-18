@@ -10,6 +10,7 @@ def order_create(request):
     cart = Cart(request)
 
     if request.method == 'POST':
+
         form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
@@ -23,6 +24,18 @@ def order_create(request):
             order_created.delay(order.id)
             return render(request, 'orders/created.html', {'order': order})
     else:
-        form = OrderCreateForm()
+        print(request.user.is_active)
+        if request.user.is_active is False:
+            form = OrderCreateForm()
+        else:
+
+            # if user is not None:
+            #     if user.is_active:
+            #         print('1111111111111111')
+            form = OrderCreateForm(initial={'user_name': request.user,
+                                            'phone_number': 'phone',
+                                            'email': request.user.email,
+                                            'address': 'adress',
+                                            'telegram': 'telegram'})
     return render(request, 'orders/create.html', {'cart': cart,
-                                                 'form': form})
+                                                  'form': form})

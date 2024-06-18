@@ -1,0 +1,30 @@
+{% extends 'app_shop/base.html' %}
+
+{% block title %}
+  вход
+{% endblock %}
+{% block content %}
+  <h1>Вход</h1>
+  {% if form.errors %}
+    <p>Логин и пароль не совпадают. Попробуйте еще раз.</p>
+  {% else %}
+    <p>Введите логин и пароль:</p>
+  {% endif %}
+  <div class="login-form">
+    <form action="{% url 'account:login' %}" method="post">
+      {% csrf_token %}
+
+        <p class="login-form">Имя: {{ form.username }}</p>
+        <p class="login-form">Пароль: {{ form.password }}</p>
+
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p>
+        <input type="submit" value="Войти" />
+      </p>
+    </form>
+
+    <p>
+      <a href="{% url 'account:password_reset' %}">Забили свой пароль?</a>
+    </p>
+  </div>
+{% endblock %}
