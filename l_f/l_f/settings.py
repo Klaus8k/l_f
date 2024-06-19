@@ -18,6 +18,9 @@ DEBUG = get_config().debug
 ALLOWED_HOSTS = ['*',]
 CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 
 from django.urls import reverse_lazy
@@ -27,6 +30,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 
 # Application definition
 INSTALLED_APPS = [
+    'debug_toolbar',
     'celery',
     'account',
     'django.contrib.admin',
@@ -37,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_shop',
     'cart',
-    'orders',
-    
+    'orders', 
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
