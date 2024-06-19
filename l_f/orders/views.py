@@ -24,18 +24,15 @@ def order_create(request):
             order_created.delay(order.id)
             return render(request, 'orders/created.html', {'order': order})
     else:
-        print(request.user.is_active)
+
         if request.user.is_active is False:
             form = OrderCreateForm()
         else:
-
-            # if user is not None:
-            #     if user.is_active:
-            #         print('1111111111111111')
-            form = OrderCreateForm(initial={'user_name': request.user,
-                                            'phone_number': 'phone',
+            form = OrderCreateForm(initial={'user_name': request.user.profile.user,
+                                            'phone_number': request.user.profile.phone_number,
                                             'email': request.user.email,
-                                            'address': 'adress',
-                                            'telegram': 'telegram'})
+                                            'address': request.user.profile.adress,
+                                            'telegram': request.user.profile.telegram}
+                                   )
     return render(request, 'orders/create.html', {'cart': cart,
                                                   'form': form})

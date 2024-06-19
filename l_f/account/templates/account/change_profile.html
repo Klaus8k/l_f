@@ -1,0 +1,26 @@
+{% extends 'app_shop/base.html' %}
+{% block title %}
+  Изменить личные данные
+{% endblock %}
+{% comment %} {% block content %}
+  <h1>Личный кабинет</h1>
+  <p>Логин: {{ request.user.first_name|default:request.user.username }}</p>
+  <p>Е-мейл: {{ request.user.email|default:'не установлен' }}</p>
+  <p>Телеграм: {{ request.user.telegram|default:'не установлен' }}</p>
+  <p>Номер телефона: {{ request.user.telegram|default:'не установлен' }}</p>
+  <a href="{% url 'account:dashboard' %}">Отмена</a>
+  <a href="{% url 'account:change_profile' %}">ИЗМЕНИТЬ</a>
+{% endblock %} {% endcomment %}
+
+{% block content %}
+  <h1>Изменить личные данные</h1>
+  <a href="{% url 'account:dashboard' %}">Отмена</a>
+  <p>Измените нужные данные</p>
+  <form action="{% url 'account:change_profile' %}" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p>
+      <input type="submit" value="ИЗМЕНИТЬ" />
+    </p>
+  </form>
+{% endblock %}

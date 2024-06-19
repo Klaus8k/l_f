@@ -8,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import views as auth_views
 
-from .forms import ChangePasswordForm_ru
+from .forms import ProfileEditForm
+
+from .models import Profile
 
 
 @login_required
@@ -16,6 +18,28 @@ def dashboard(request):
     return render(request,
                   'account/dashboard.html',
                   {'section': 'dashboard'})
+
+
+@login_required
+def change_profile(request):
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            Profile.objects.filter(user=request.user).update(**cd)
+            
+            return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+        else:
+            # если форма ошибка по бд или неправильные символы ввывести ошибку
+            cd = form.cleaned_data
+            print(form.errors)
+            
+            Profile.objects.filter(user=request.user).update(**cd)
+            return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+    else:
+        profile_form = ProfileEditForm(instance=request.user.profile)
+
+        return render(request, 'account/change_profile.html', {'form': profile_form})
 
 
 def user_login(request):
@@ -53,6 +77,9 @@ def register(request):
                 user_form.cleaned_data['password'])
             # Сохранить объект User
             new_user.save()
+
+            # Создать профиль пользователя
+            Profile.objects.create(user=new_user)
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})
@@ -61,7 +88,3 @@ def register(request):
     return render(request,
                   'account/register.html',
                   {'user_form': user_form})
-
-
-class ChangePassword_ru(auth_views.PasswordChangeView):
-    form_class = ChangePasswordForm_ru

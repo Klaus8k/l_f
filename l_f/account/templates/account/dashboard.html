@@ -6,6 +6,9 @@
   <h1>Личный кабинет</h1>
   <p>Логин: {{ request.user.first_name|default:request.user.username }}</p>
   <p>Е-мейл: {{ request.user.email|default:'не установлен' }}</p>
-  <p>Телеграм: {{ request.user.telegram|default:'не установлен' }}</p>
+  <p>Телеграм: {{ request.user.profile.telegram|default:'не установлен' }}</p>
+  <p>Номер телефона: {{ request.user.profile.telegram|default:'не установлен' }}</p>
+  <p>Адрес: {{ request.user.profile.adress|default:'не установлен' }}</p>
   <a href="{% url 'account:password_change' %}">сменить пароль</a>
+  <a href="{% url 'account:change_profile' %}">Изменить данные</a>
 {% endblock %}

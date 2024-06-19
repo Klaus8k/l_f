@@ -40,6 +40,7 @@ urlpatterns = [
 
     # страница аккаунта в дашборде (то есть страница профиля)
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/change_profile', views.change_profile, name='change_profile'),
     
     path('register/', views.register, name='register'),
 

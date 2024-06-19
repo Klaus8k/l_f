@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from .config import get_config
 
 from pathlib import Path
@@ -16,14 +17,13 @@ SECRET_KEY = get_config().secret_key
 DEBUG = get_config().debug
 
 ALLOWED_HOSTS = ['*',]
-CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru', 'https://*.127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
 
-from django.urls import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 # LOGIN_URL = 'login'
 # LOGOUT_URL = 'logout'
@@ -32,7 +32,6 @@ LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 INSTALLED_APPS = [
     'debug_toolbar',
     'celery',
-    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_shop',
     'cart',
-    'orders', 
+    'orders',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -150,4 +150,3 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 EMAIL_HOST = 'localhost'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
