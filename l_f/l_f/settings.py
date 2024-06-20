@@ -24,17 +24,9 @@ INTERNAL_IPS = [
     '*',
 ]
 
+SHOW_TOOLBAR_CALLBACK = "l_f.utils.show_debug_toolbar_in_staging"
 
 LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
-
-# # RabbitMQ Configuration
-# RABBIT_HOST = "localhost"
-# RABBIT_PORT = "5672"
-# RABBIT_VIRTUAL_HOST = "/"
-# RABBITMQ_ROUTING_KEY = "orders"
-# # RabbitMQ Credentials
-# RABBIT_USERNAME = "oleg"
-# RABBIT_PASSWORD = "oleg"
 
 # Application definition
 INSTALLED_APPS = [
