@@ -37,28 +37,42 @@
           {% endif %}
         {% endwith %}
       </div>
-      <div class="user_info col-6">
-        <span class="logo">Аккаунт</span>
-{% if request.user.is_authenticated %}
-  <ul class="menu">
-    <li {% if section == "dashboard" %} class="selected" {% endif %}>
+    <div class="user_info col-6">
+      <span class="logo">Аккаунт</span>
+      {% if request.user.is_authenticated %}
+      <ul class="menu">
+        <li {% if section == "dashboard" %} class="selected" {% endif %}>
+        <a href="{% url 'account:dashboard' %}">Личный кабинет</a>
+        </li>
+      </ul>
+      {% endif %}
 
-    <a href="{% url 'account:dashboard' %}">Личный кабинет</a>
-    </li>
-</ul>
-{% endif %}
-<span class="user">
-{% if request.user.is_authenticated %}
-{{ request.user.first_name|default:request.user.username }},
-<a href="{% url 'account:logout' %}">Выйти</a>
-{% else %}
-<a href="{% url 'account:register' %}">Регистрация</a>
-<a href="{% url 'account:login' %}">Войти</a>
-{% endif %}
-</span>
-      </div>
+
+      <span class="user">
+      {% if request.user.is_authenticated %}
+      {{ request.user.first_name|default:request.user.username }},
+        <a href="{% url 'account:logout' %}">Выйти</a>
+      {% else %}
+        <a href="{% url 'account:register' %}">Регистрация</a>
+        <a href="{% url 'account:login' %}">Войти</a>
+      {% endif %}
+      </span>
     </div>
   </div>
+</div>
+
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li class="{{ message.tags }}">
+  {{ message|safe }}
+  <a href="#" class="close">x</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
 
   <div class="container pt-4">
     <div class="top_line row bg-light shadow border d-flex justify-content-center align-items-center rounded p-3">

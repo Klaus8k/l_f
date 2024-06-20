@@ -5,6 +5,7 @@ from .forms import LoginForm
 from .forms import UserRegistrationForm
 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from django.contrib.auth import views as auth_views
 
@@ -27,13 +28,16 @@ def change_profile(request):
         if form.is_valid():
             cd = form.cleaned_data
             Profile.objects.filter(user=request.user).update(**cd)
+            messages.success(request, 'Profile updated successfully')
             
             return render(request, 'account/dashboard.html', {'section': 'dashboard'})
         else:
             # если форма ошибка по бд или неправильные символы ввывести ошибку
+            
+            messages.error(request, form.errors)
             cd = form.cleaned_data
             print(form.errors)
-            
+
             Profile.objects.filter(user=request.user).update(**cd)
             return render(request, 'account/dashboard.html', {'section': 'dashboard'})
     else:

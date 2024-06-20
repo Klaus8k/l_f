@@ -27,14 +27,14 @@ INTERNAL_IPS = [
 
 LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 
-# RabbitMQ Configuration
-RABBIT_HOST = "localhost"
-RABBIT_PORT = "5672"
-RABBIT_VIRTUAL_HOST = "/"
-RABBITMQ_ROUTING_KEY = "orders"
-# RabbitMQ Credentials
-RABBIT_USERNAME = "oleg"
-RABBIT_PASSWORD = "oleg"
+# # RabbitMQ Configuration
+# RABBIT_HOST = "localhost"
+# RABBIT_PORT = "5672"
+# RABBIT_VIRTUAL_HOST = "/"
+# RABBITMQ_ROUTING_KEY = "orders"
+# # RabbitMQ Credentials
+# RABBIT_USERNAME = "oleg"
+# RABBIT_PASSWORD = "oleg"
 
 # Application definition
 INSTALLED_APPS = [
@@ -124,6 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
