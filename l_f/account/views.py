@@ -12,10 +12,14 @@ from django.contrib.auth import views as auth_views
 from .forms import ProfileEditForm
 
 from .models import Profile
+import time
 
 
 @login_required
 def dashboard(request):
+
+    print(__name__)
+    
     return render(request,
                   'account/dashboard.html',
                   {'section': 'dashboard'})

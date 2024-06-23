@@ -142,9 +142,9 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [  # dirs of static files
     BASE_DIR / "app_shop/static",  # for shop
-    BASE_DIR / "account/static",  # for shop
+    # BASE_DIR / "account/static",  # for shop
     BASE_DIR / "cart/static",  # for shop
-    BASE_DIR / "orders/static",  # for shop
+    # BASE_DIR / "orders/static",  # for shop
 ]
 
 # Default primary key field type
@@ -157,3 +157,4 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 EMAIL_HOST = 'localhost'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
