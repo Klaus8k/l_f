@@ -4,4 +4,4 @@ __pycache__
 __init__.py
 deploy/*
 static
-l_f/account/migrations/*
+migrations
