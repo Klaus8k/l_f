@@ -158,3 +158,5 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 EMAIL_HOST = 'localhost'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+import datetime
+print(datetime.datetime.now(), __name__)

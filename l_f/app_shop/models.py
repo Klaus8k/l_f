@@ -6,6 +6,7 @@ from django.urls import reverse
 
 
 class Category(models.Model):
+
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
@@ -18,9 +19,12 @@ class Category(models.Model):
         return str(self.name)
 
     def get_absolute_url(self):
+        
         """
         Returns the url to access a specific product.
         """
+        import datetime
+        print(datetime.datetime.now(), __name__)
         return reverse('app_shop:product_list_by_category', args=[self.slug])
 
 
@@ -47,5 +51,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
+        import datetime
+        print(datetime.datetime.now(), __name__)
         return reverse('app_shop:product_detail',
                        args=[self.id,  self.slug])

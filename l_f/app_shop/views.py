@@ -17,7 +17,8 @@ def product_list(request, category_slug=None):
     Returns:
         HttpResponse: The rendered product list view.
     """
-    print(__name__)
+    import datetime
+    print(datetime.datetime.now(), __name__)
     
     category = None
     categories = Category.objects.all()
@@ -52,5 +53,6 @@ def product_detail(request, id, slug):
     return render(request, 'app_shop/product/detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form})
+
 
 

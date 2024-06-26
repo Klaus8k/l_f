@@ -3,6 +3,7 @@ from .views import product_list, product_detail
 
 app_name = 'app_shop'
 
+
 urlpatterns = [
     path('', view=product_list, name='product_list'),
     path('<slug:category_slug>/', view=product_list,
@@ -11,3 +12,6 @@ urlpatterns = [
     re_path(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$',
             view=product_detail, name='product_detail'),
 ]
+
+import datetime
+print(datetime.datetime.now(), __name__)
