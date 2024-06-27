@@ -11,15 +11,31 @@ from django.contrib.auth import views as auth_views
 
 from .forms import ProfileEditForm
 
+from orders.models import Order, OrderItem
+
 from .models import Profile
 import time
 
 
 @login_required
 def dashboard(request):    
+    
+    ''' выбираем заказы пользователя и добавляем в контекст'''
+    
+    subj_orders = []
+    user_orders = Order.objects.filter(user_name=request.user)
+    
+    for i in user_orders:
+        subj_orders += OrderItem.objects.filter(pk=i.pk)
+    
+    
+    
+    context = {'user_orders': subj_orders, 'section': 'dashboard'}
+    
+    
     return render(request,
                   'account/dashboard.html',
-                  {'section': 'dashboard'})
+                  context=context,)
 
 
 @login_required
