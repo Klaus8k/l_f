@@ -1,0 +1,49 @@
+{% extends 'app_shop/base.html' %}
+
+{% block title %}
+  Checkout
+{% endblock %}
+
+{% block content %}
+  <a href="/">Главная</a>
+  <h1>Проверьте заказ</h1>
+  <div class="order-info">
+    <h3>Ваш заказ:</h3>
+    <ul>
+      {% for item in cart %}
+        <li>
+          {{ item.quantity }} x {{ item.product.name }}
+          <span>${{ item.total_price }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <p>Сумма: {{ cart.get_total_price }} руб.</p>
+  </div>
+  {% if request.user.is_authenticated %}
+
+
+
+    <form action="." method="post" class="order-form">
+      {{ form.as_p }}
+      <p>
+        <input type="submit" value="Place order" />
+      </p>
+      {% csrf_token %}
+    </form>
+  {% else %}
+
+  <p>Зарегистрированы? - <a href="{% url 'account:login' %}">Войдите</a></p>
+  <p>Можно <a href="{% url 'account:register' %}">Зарегистрироваться.</a>
+  Корзина не пропадет.</p>
+  <br>
+  <p>Или сделать быстрый зазаказ. Но нам нужен хотя бы номер телефона</p>
+
+    <form action="." method="post" class="order-form">
+      {{ form.as_p }}
+      <p>
+        <input type="submit" value="Place order" />
+      </p>
+      {% csrf_token %}
+    </form>
+  {% endif %}
+{% endblock %}

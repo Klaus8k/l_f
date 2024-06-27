@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Order, OrderItem
-from .forms import OrderCreateForm
+from .forms import OrderCreateForm, FastOrderCreateForm
 from cart.cart import Cart
 from .tasks import order_created
 
@@ -26,7 +26,14 @@ def order_create(request):
     else:
 
         if request.user.is_active is False:
-            form = OrderCreateForm()
+            """ Предложить войти / зарегистрироваться или сделать быстрый заказ """
+            form = FastOrderCreateForm() 
+            
+            return render(request, 'orders/fast_create.html', {'cart': cart,
+                                                  'form': form})   
+            
+            
+            
         else:
             form = OrderCreateForm(initial={'user_name': request.user.profile.user,
                                             'phone_number': request.user.profile.phone_number,

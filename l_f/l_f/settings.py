@@ -30,6 +30,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 INSTALLED_APPS = [
     # 'debug_toolbar',
     'celery',
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'app_shop',
     'cart',
     'orders',
-    'account',
 ]
 
 MIDDLEWARE = [
