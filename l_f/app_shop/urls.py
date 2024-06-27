@@ -12,6 +12,3 @@ urlpatterns = [
     re_path(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$',
             view=product_detail, name='product_detail'),
 ]
-
-import datetime
-print(datetime.datetime.now(), __name__)

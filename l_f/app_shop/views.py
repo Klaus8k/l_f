@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from cart.forms import CartAddProductForm
 
+
 def product_list(request, category_slug=None):
     """
     Renders the product list view. 
@@ -17,9 +18,7 @@ def product_list(request, category_slug=None):
     Returns:
         HttpResponse: The rendered product list view.
     """
-    import datetime
-    print(datetime.datetime.now(), __name__)
-    
+
     category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
@@ -53,6 +52,3 @@ def product_detail(request, id, slug):
     return render(request, 'app_shop/product/detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form})
-
-
-

@@ -16,10 +16,7 @@ import time
 
 
 @login_required
-def dashboard(request):
-
-    print(__name__)
-    
+def dashboard(request):    
     return render(request,
                   'account/dashboard.html',
                   {'section': 'dashboard'})

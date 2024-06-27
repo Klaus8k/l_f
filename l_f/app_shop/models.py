@@ -23,8 +23,7 @@ class Category(models.Model):
         """
         Returns the url to access a specific product.
         """
-        import datetime
-        print(datetime.datetime.now(), __name__)
+
         return reverse('app_shop:product_list_by_category', args=[self.slug])
 
 
@@ -51,7 +50,6 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        import datetime
-        print(datetime.datetime.now(), __name__)
+
         return reverse('app_shop:product_detail',
                        args=[self.id,  self.slug])
