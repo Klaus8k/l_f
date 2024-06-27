@@ -12,21 +12,18 @@
   <a href="{% url 'account:password_change' %}">сменить пароль</a>
   <a href="{% url 'account:change_profile' %}">Изменить данные</a>
 
-  <hr>
-  <br>
+  <hr />
+  <br />
 
   <div class="history_orders">
     <h1>история заказов</h1>
 
-    {% for item in user_orders %}
-    <p>{{ item.id }}---</p>
-    <p>{{ item.product }}---</p>
-    <p>{{ item.quantity }}---</p>
-    <p>{{ item.price }}---</p>
-    <p>{{ item.get_cost }} руб.</p>
-
+    {% for key, value in orders_result.items %}
+      <h5>Заказ № {{ key.id }} от {{ key.created_at }}</h5>
+      {% for item in value %}
+        <p>{{ item.quantity }}шт. {{ item.product }} по {{ item.price }}руб. на {{ item.get_cost }} руб.</p>
+      {% endfor %}
+      <hr>
     {% endfor %}
   </div>
-
-
 {% endblock %}

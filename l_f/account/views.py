@@ -22,15 +22,18 @@ def dashboard(request):
     
     ''' выбираем заказы пользователя и добавляем в контекст'''
     
-    subj_orders = []
-    user_orders = Order.objects.filter(user_name=request.user)
     
-    for i in user_orders:
-        subj_orders += OrderItem.objects.filter(pk=i.pk)
+    user_orders = dict.fromkeys(Order.objects.filter(user_name=request.user), None)
+    print(user_orders)
     
+    orders_result = {}
     
+    for i in user_orders.keys():
+        orders_result[i] = [x for x in OrderItem.objects.filter(order_id=i.pk)]
+            
+    print(orders_result)    
     
-    context = {'user_orders': subj_orders, 'section': 'dashboard'}
+    context = {'orders_result': orders_result, 'section': 'dashboard'}
     
     
     return render(request,
