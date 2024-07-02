@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 {% load static %}
-{% block title %}
+{% load compress %}
 
-{% endblock %}
 
-<head>
-  {% block title_meta %}
 
-  {% endblock %}
+<html lang="ru">
+  <head>
+    {% block title %}
+    <title>Partsix - Auto Parts & Car Accessories Shop HTML Template</title>
+    {% endblock %}
 
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="yandex-verification" content="5fccdfbbfd32f5b2" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="{% static 'app_shop/img/favicon.ico' %}" type="image/x-icon" />
-  <link rel="stylesheet" type="text/css" href="{% static 'app_shop/css/bootstrap.min.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'app_shop/css/base.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'app_shop/css/product_cart.css' %}" />
-  {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> {% endcomment %}
+    {% block title_meta %}
+    <meta charset="utf-8" />
+    <meta name="description" content="Morden Bootstrap HTML5 Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="yandex-verification" content="5fccdfbbfd32f5b2" />
+    {% endblock %}
 
-  {% comment %} <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> {% endcomment %}
+    <!-- ======= All CSS Plugins here ======== -->
+    <link rel="stylesheet" href="{% static 'app_shop/css/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'app_shop/css/glightbox.min.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="{% static 'app_shop/img/favicon.ico' %}" type="image/x-icon" />
+
+    <!-- Plugin css -->
+    <link rel="stylesheet" href="{% static 'app_shop/css/bootstrap.min.css' %}">
+
+    <!-- Custom Style CSS -->
+
+    {% comment %} <link rel="stylesheet" href="assets/css/style.css"> {% endcomment %}
+
+    {% compress css %}
+      <link type="text/x-scss" href="{% static 'app_shop/scss/style.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+
+
 </head>
+
+
 
 <body>
   <a href="/">ГЛАВНАЯ</a>
@@ -83,4 +102,6 @@
       </div>
     </div>
   </div>
+  
 </body>
+</html>

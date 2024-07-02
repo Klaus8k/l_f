@@ -14,7 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = get_config().secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = get_config().debug
+# DEBUG = True
 
 ALLOWED_HOSTS = ['*',]
 CSRF_TRUSTED_ORIGINS = ['https://*.livelyfood.ru', 'https://*.127.0.0.1']
@@ -29,6 +31,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('app_shop:product_list')
 # Application definition
 INSTALLED_APPS = [
     # 'debug_toolbar',
+    'compressor',
     'celery',
     'account',
     'django.contrib.admin',
@@ -117,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
-    ]
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -133,6 +136,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',]
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 
 STATIC_URL = 'static/'
 
