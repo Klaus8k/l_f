@@ -1,66 +1,164 @@
-{% extends 'app_shop/_base.html' %}
+{% extends 'app_shop/base.html' %}
 {% load static %}
 
 <!-- Тайтл сайта -->
 {% block title %}
-{% if category %}
-{{ category.name }}
-{% else %}
-{% comment %} Название сайта {% endcomment %}
-{% endif %}
+  {% if category %}
+    {{ category.name }}
+  {% else %}
+    {% comment %}Название сайта{% endcomment %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
+  <!-- Start breadcrumb section -->
+  <section class="breadcrumb__section breadcrumb__bg">
+    <div class="container">
+      <div class="row row-cols-1">
+        <div class="col">
+          <div class="breadcrumb__content text-center">
+            <h1 class="breadcrumb__content--title">Наша продукция</h1>
 
-<div id="sidebar">
-  <h3>Категории</h3>
-  <ul>
-    <li>
-      <a href="{% url 'app_shop:product_list' %}">Все категории</a>
-    </li>
-    {% for c in categories %}
-    <li>
-      <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-<hr>
-
-<div id="main" class="product-list">
-  <h3>
-    {% if category %}
-    {{ category.name }}
-    {% else %}
-    Товары
-    {% endif %}
-  </h3>
-
-</div>
-<div class="container">
-  <div class="row row-col-4">
-    {% for product in products %}
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img src="{% if product.image %}
-                  {{ product.image.url }}
-                  {% else %}
-                  {% static 'app_shop/img/no_image.png' %}
-                  {% endif %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h4 class="card-title">{{ product.name }}</h4>
-          <p class="card-text">Состав: {{ product.description }}</p>
-          <h6 class="card-text">Цена: {{ product.price }} руб.</h6>
-          <h6 class="card-text">вес/наличие</h6>
-          <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Детали</a>
+            {% comment %}хлебные крошки{% endcomment %}
+            <ul class="breadcrumb__content--menu d-flex justify-content-center">
+              <li class="breadcrumb__content--menu__items">
+                <a href="index.html">хлебная 1</a>
+              </li>
+              <li class="breadcrumb__content--menu__items">
+                <span>хлебная 2</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-    {% endfor %}
+  </section>
+  <!-- End breadcrumb section -->
+
+  <!-- Start shop section -->
+  <div class="shop__section section--padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 shop-col-width-lg-4">
+          <div class="shop__sidebar--widget widget__area d-none d-lg-block">
+            {% comment %}Выбор ОБЩИХ 3шт категорий{% endcomment %}
+            <div class="single__widget widget__bg">
+              <h2 class="widget__title h3">Категории</h2>
+
+              {% for c in categories %}
+                <ul class="widget__categories--menu">
+                  <li class="widget__categories--menu__list">
+                    <label class="widget__categories--menu__label d-flex align-items-center">
+                      <img class="widget__categories--menu__img" src="{% static 'app_shop/img/product/small-product/product1.webp' %}" alt="categories-img" />
+                      <span class="widget__categories--menu__text">{{ c.name }}</span>
+                      <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
+                        <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                      </svg>
+                    </label>
+
+                    {% comment %}выбор подкатегории в ОБЩЕЙ{% endcomment %}
+                    {% for product in products %}
+                      {% if product.category == c %}
+                        <ul class="widget__categories--sub__menu">
+                          <li class="widget__categories--sub__menu--list">
+                            {% comment %}в ссылках <a href="{{ c.get_absolute_url }}">{{ c.name }}</a> {% endcomment %}
+                            <a class="widget__categories--sub__menu--link d-flex align-items-center" href="{{ c.get_absolute_url }}">
+                              <img class="widget__categories--sub__menu--img" src="{% static 'app_shop/img/product/small-product/product1.webp' %}" alt="categories-img" />
+                              <span class="widget__categories--sub__menu--text">{{ product.name }}</span>
+                            </a>
+                          </li>
+                        </ul>
+                      {% endif %}
+                    {% endfor %}
+                  </li>
+                </ul>
+              {% endfor %}
+            </div>
+            
+            следующий блок - фильтр
+            
+            <div class="single__widget widget__bg">
+              <h2 class="widget__title h3">фильтр по содержанию продуктов</h2>
+              <ul class="widget__form--check">
+                <li class="widget__form--check__list">
+                  <label class="widget__form--check__label" for="check1">Body Parts</label>
+                  <input class="widget__form--check__input" id="check1" type="checkbox" />
+                  <span class="widget__form--checkmark"></span>
+                </li>
+                <li class="widget__form--check__list">
+                  <label class="widget__form--check__label" for="check2">Oiles Fluids</label>
+                  <input class="widget__form--check__input" id="check2" type="checkbox" />
+                  <span class="widget__form--checkmark"></span>
+                </li>
+                <li class="widget__form--check__list">
+                  <label class="widget__form--check__label" for="check3">Car care kits</label>
+                  <input class="widget__form--check__input" id="check3" type="checkbox" />
+                  <span class="widget__form--checkmark"></span>
+                </li>
+                <li class="widget__form--check__list">
+                  <label class="widget__form--check__label" for="check4">Brake disks</label>
+                  <input class="widget__form--check__input" id="check4" type="checkbox" />
+                  <span class="widget__form--checkmark"></span>
+                </li>
+                <li class="widget__form--check__list">
+                  <label class="widget__form--check__label" for="check5">Repair Parts</label>
+                  <input class="widget__form--check__input" id="check5" type="checkbox" />
+                  <span class="widget__form--checkmark"></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
+  <div id="sidebar">
+    <h3>Категории</h3>
+    <ul>
+      <li>
+        <a href="{% url 'app_shop:product_list' %}">Все категории</a>
+      </li>
+      {% for c in categories %}
+        <li>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <hr />
 
-</div>
-
+  <div id="main" class="product-list">
+    <h3>
+      {% if category %}
+        {{ category.name }}
+      {% else %}
+        Товары
+      {% endif %}
+    </h3>
+  </div>
+  <div class="container">
+    <div class="row row-col-4">
+      {% for product in products %}
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="{% if product.image %}
+                {{ product.image.url }}
+              {% else %}
+                {% static 'app_shop/img/no_image.png' %}
+              {% endif %}"
+              class="card-img-top"
+              alt="..." />
+            <div class="card-body">
+              <h4 class="card-title">{{ product.name }}</h4>
+              <p class="card-text">Состав: {{ product.description }}</p>
+              <h6 class="card-text">Цена: {{ product.price }} руб.</h6>
+              <h6 class="card-text">вес/наличие</h6>
+              <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Детали</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
