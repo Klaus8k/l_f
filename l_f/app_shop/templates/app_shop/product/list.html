@@ -74,39 +74,87 @@
                 </ul>
               {% endfor %}
             </div>
-            
-            следующий блок - фильтр
-            
+
+            {% comment %}Блок фильтры{% endcomment %}
             <div class="single__widget widget__bg">
               <h2 class="widget__title h3">фильтр по содержанию продуктов</h2>
               <ul class="widget__form--check">
                 <li class="widget__form--check__list">
-                  <label class="widget__form--check__label" for="check1">Body Parts</label>
+                  <label class="widget__form--check__label" for="check1">Максимум белка</label>
                   <input class="widget__form--check__input" id="check1" type="checkbox" />
                   <span class="widget__form--checkmark"></span>
                 </li>
                 <li class="widget__form--check__list">
-                  <label class="widget__form--check__label" for="check2">Oiles Fluids</label>
+                  <label class="widget__form--check__label" for="check2">Свинину не ем</label>
                   <input class="widget__form--check__input" id="check2" type="checkbox" />
-                  <span class="widget__form--checkmark"></span>
-                </li>
-                <li class="widget__form--check__list">
-                  <label class="widget__form--check__label" for="check3">Car care kits</label>
-                  <input class="widget__form--check__input" id="check3" type="checkbox" />
-                  <span class="widget__form--checkmark"></span>
-                </li>
-                <li class="widget__form--check__list">
-                  <label class="widget__form--check__label" for="check4">Brake disks</label>
-                  <input class="widget__form--check__input" id="check4" type="checkbox" />
-                  <span class="widget__form--checkmark"></span>
-                </li>
-                <li class="widget__form--check__list">
-                  <label class="widget__form--check__label" for="check5">Repair Parts</label>
-                  <input class="widget__form--check__input" id="check5" type="checkbox" />
                   <span class="widget__form--checkmark"></span>
                 </li>
               </ul>
             </div>
+
+            {% comment %}Фильтр по цене{% endcomment %}
+            <div class="single__widget price__filter widget__bg">
+              <h2 class="widget__title h3">Фильтр по цене</h2>
+              <form class="price__filter--form" action="#">
+                <div class="price__filter--form__inner mb-15 d-flex align-items-center">
+                  <div class="price__filter--group">
+                    <label class="price__filter--label" for="Filter-Price-GTE2">From</label>
+                    <div class="price__filter--input border-radius-5 d-flex align-items-center">
+                      <span class="price__filter--currency">руб.</span>
+                      <input class="price__filter--input__field border-0" name="filter.v.price.gte" id="Filter-Price-GTE2" type="number" placeholder="0" min="0" max="250.00" />
+                    </div>
+                  </div>
+                  <div class="price__divider">
+                    <span>-</span>
+                  </div>
+                  <div class="price__filter--group">
+                    <label class="price__filter--label" for="Filter-Price-LTE2">To</label>
+                    <div class="price__filter--input border-radius-5 d-flex align-items-center">
+                      <span class="price__filter--currency">руб.</span>
+                      <input class="price__filter--input__field border-0" name="filter.v.price.lte" id="Filter-Price-LTE2" type="number" min="0" placeholder="250.00" max="250.00" />
+                    </div>
+                  </div>
+                </div>
+                <button class="primary__btn price__filter--btn" type="submit">Отфильтровать</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} блок плиток категорий (не общих а более мелких) {% endcomment %}
+        {% comment %} Отображать только если не выбрана категория {% endcomment %}
+        <div class="col-xl-9 col-lg-8 shop-col-width-lg-8">
+          <div class="shop__right--sidebar">
+            <!-- Start categories section -->
+            <div class="categories__shop mb-50">
+              <div class="section__heading border-bottom mb-30">
+                <h2 class="section__heading--maintitle">Категории <span>продукции</span></h2>
+              </div>
+
+              <ul class="categories__shop--inner">
+                {% for c in categories %}
+                <li class="categories__shop--card">
+                  <a class="categories__shop--card__link" href="{{ c.get_absolute_url }}">
+                    <div class="categories__thumbnail mb-15">
+                      <img class="categories__thumbnail--img" src="{% static 'app_shop/img/product/main-product/product1.webp' %}" alt="categories-img" />
+                    </div>
+                    <div class="categories__content">
+                      <h2 class="categories__content--title">{{ c.name }}</h2>
+                      {% comment %} количество продуктов в категории {% endcomment %}
+                      <span class="categories__content--subtitle">количество позиций</span>
+                    </div>
+                  </a>
+
+                </li>
+                {% endfor %}
+
+              </ul>
+
+            </div>
+            <!-- End categories section -->
+
+
+
           </div>
         </div>
       </div>
