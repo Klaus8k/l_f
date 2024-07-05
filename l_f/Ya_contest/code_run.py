@@ -1,42 +1,29 @@
 import sys
 
 
-def main1():
-    len_arr = int(input())
-    arr = [int(i) for i in input().split()]
-    ask = int(input())
-    
-    arr.sort()
-    res = {}
-    
-    counter = 0
-    while counter < len_arr:
-        
-        
-        
-    
-
 def main():
-    a = set(input().split())
-    res = set(list(input()))
-    print(len(res) - len(set.intersection(a, res)))
+    # len_arr = int(input())
+    # arr = [int(i) for i in input().split()]
+    # ask = int(input())
 
+    len_arr = 5
+    arr = [-12, 3, 29, 1]
+    ask = -2
 
-text = ['She sells sea shells on the sea shore;\n',
-        "The shells that she sells are sea shells I'm sure.\n",
-        'So if she sells sea shells on the sea shore,\n',
-        "I'm sure that the shells are sea shore shells.\n", '\n']
+    res = arr[0]
+    mid = abs(ask)
+    
+    if ask > 0:
+        for i in arr:
+            if abs(ask-i) < mid:
+                mid = abs(ask-i)
+                res = i
+                
+    elif ask < 0 or ask == 0:
+        res = min(arr)
 
-
-def main():
-    # text_list = sys.stdin.readlines()
-    text_list = [i.split() for i in text]
-    res = []
-    for i in text_list:
-        res += i
-    print(len(set(res)))
-
+    print(res)
 
 
 if __name__ == '__main__':
-    main1()
+    main()
