@@ -57,19 +57,20 @@
                     </label>
 
                     {% comment %}выбор подкатегории в ОБЩЕЙ{% endcomment %}
-                    {% for product in products %}
-                      {% if product.category == c %}
-                        <ul class="widget__categories--sub__menu">
+                    <ul class="widget__categories--sub__menu">
+                      {% for product in products %}
+                        {% if product.category == c %}
                           <li class="widget__categories--sub__menu--list">
                             {% comment %}в ссылках <a href="{{ c.get_absolute_url }}">{{ c.name }}</a> {% endcomment %}
-                            <a class="widget__categories--sub__menu--link d-flex align-items-center" href="{{ c.get_absolute_url }}">
+                            <a class="widget__categories--sub__menu--link d-flex align-items-center" href="{{ product.get_absolute_url }}">
                               <img class="widget__categories--sub__menu--img" src="{% static 'app_shop/img/product/small-product/product1.webp' %}" alt="categories-img" />
                               <span class="widget__categories--sub__menu--text">{{ product.name }}</span>
                             </a>
+                            {% comment %} {% endif %} {% endcomment %}
                           </li>
-                        </ul>
-                      {% endif %}
-                    {% endfor %}
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
                   </li>
                 </ul>
               {% endfor %}
@@ -78,7 +79,7 @@
             {% comment %}Блок фильтры{% endcomment %}
             <div class="single__widget widget__bg">
               <h2 class="widget__title h3">фильтр по содержанию продуктов</h2>
-              <ul class="widget__form--check">
+              <ul class="widget__form--check mb-15">
                 <li class="widget__form--check__list">
                   <label class="widget__form--check__label" for="check1">Максимум белка</label>
                   <input class="widget__form--check__input" id="check1" type="checkbox" />
@@ -90,10 +91,11 @@
                   <span class="widget__form--checkmark"></span>
                 </li>
               </ul>
+              <button class="primary__btn price__filter--btn" type="submit">Отфильтровать</button>
             </div>
 
             {% comment %}Фильтр по цене{% endcomment %}
-            <div class="single__widget price__filter widget__bg">
+            {% comment %} <div class="single__widget price__filter widget__bg">
               <h2 class="widget__title h3">Фильтр по цене</h2>
               <form class="price__filter--form" action="#">
                 <div class="price__filter--form__inner mb-15 d-flex align-items-center">
@@ -117,7 +119,7 @@
                 </div>
                 <button class="primary__btn price__filter--btn" type="submit">Отфильтровать</button>
               </form>
-            </div>
+            </div> {% endcomment %}
           </div>
         </div>
 
@@ -141,7 +143,7 @@
                       <div class="categories__content">
                         <h2 class="categories__content--title">{{ c.name }}</h2>
                         {% comment %}количество продуктов в категории{% endcomment %}
-                        <span class="categories__content--subtitle">количество позиций</span>
+                        <span class="categories__content--subtitle">{{ c.products.count }}</span>
                       </div>
                     </a>
                   </li>
@@ -367,9 +369,6 @@
   <!-- Customscript js -->
   <script src="{% static 'app_shop/js/script.js' %}"></script>
 
-
-
-	
   <!-- Scroll top bar -->
   <button id="scroll__top">
     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
@@ -377,9 +376,7 @@
     </svg>
   </button>
 
-
-
-	{% comment %} страрое {% endcomment %}
+  {% comment %}страрое{% endcomment %}
   <div id="sidebar">
     <h3>Категории</h3>
     <ul>
