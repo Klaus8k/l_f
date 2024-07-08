@@ -404,7 +404,8 @@
             <div class="newsletter__subscribe">
               <form class="newsletter__subscribe--form" action="#">
                 <label><input class="newsletter__subscribe--input" placeholder=" Введите ваш емеил" type="text" /></label>
-                <button class="newsletter__subscribe--button" type="submit">Подписаться</button>
+                {% comment %} надо форму сделать newsletter_form иначе конфликт типов{% endcomment %}
+                {% comment %} <button class="newsletter__subscribe--button" type="submit">Подписаться</button> {% endcomment %}
               </form>
             </div>
           </div>

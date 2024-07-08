@@ -38,8 +38,8 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE)
     
-    tag = models.ForeignKey(
-        Tag, related_name='products', blank=True, null=True, on_delete=models.DO_NOTHING)
+    tag = models.ManyToManyField(
+        Tag, related_name='products', blank=True)
     
     
     name = models.CharField(max_length=200, db_index=True)
