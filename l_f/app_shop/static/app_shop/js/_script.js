@@ -34,7 +34,7 @@
 
 */
 
-"use strict";
+// "use strict";
 
 // Preloader
 const preLoader = function () {

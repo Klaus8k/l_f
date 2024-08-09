@@ -240,15 +240,15 @@
                           <article class="product__card">
                             <div class="product__card--thumbnail">
                               <a class="product__card--thumbnail__link display-block" href="product-details.html">
-                                <img class="product__card--thumbnail__img product__primary--img" src="{% static 'app_shop/img/product/main-product/product5.webp' %}" alt="product-img" />
-                                <img class="product__card--thumbnail__img product__secondary--img" src="{% static 'app_shop/img/product/main-product/product6.webp' %}" alt="product-img" />
+                                <img class="product__card--thumbnail__img product__primary--img" src="{{ product.image.url }}" alt="product-img" />
+                                {% comment %} <img class="product__card--thumbnail__img product__secondary--img" src="{% static 'app_shop/img/product/main-product/product6.webp' %}" alt="product-img" /> {% endcomment %}
                               </a>
                               {% comment %}скидка{% endcomment %}
                               {% comment %} <span class="product__badge">-14%</span> {% endcomment %}
                               <ul class="product__card--action d-flex align-items-center justify-content-center">
                                 <li class="product__card--action__list">
                                   {% comment %}быстрый просмотр - скрипт{% endcomment %}
-                                  <a class="product__card--action__btn" title="Quick View" data-open="modal1" href="javascript:void(0)">
+                                  <a class="product__card--action__btn" title="Quick View" data-open="{{ product.slug }}" href="javascript:void(0)">
                                     <svg class="product__card--action__btn--svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M15.6952 14.4991L11.7663 10.5588C12.7765 9.4008 13.33 7.94381 13.33 6.42703C13.33 2.88322 10.34 0 6.66499 0C2.98997 0 0 2.88322 0 6.42703C0 9.97085 2.98997 12.8541 6.66499 12.8541C8.04464 12.8541 9.35938 12.4528 10.4834 11.6911L14.4422 15.6613C14.6076 15.827 14.8302 15.9184 15.0687 15.9184C15.2944 15.9184 15.5086 15.8354 15.6711 15.6845C16.0166 15.364 16.0276 14.8325 15.6952 14.4991ZM6.66499 1.67662C9.38141 1.67662 11.5913 3.8076 11.5913 6.42703C11.5913 9.04647 9.38141 11.1775 6.66499 11.1775C3.94857 11.1775 1.73869 9.04647 1.73869 6.42703C1.73869 3.8076 3.94857 1.67662 6.66499 1.67662Z" fill="currentColor"></path>
                                     </svg>
@@ -289,13 +289,13 @@
                           <div class="product__card product__list d-flex align-items-center">
                             <div class="product__card--thumbnail product__list--thumbnail">
                               <a class="product__card--thumbnail__link display-block" href="product-details.html">
-                                <img class="product__card--thumbnail__img product__primary--img" src="{% static 'app_shop/img/product/main-product/product10.webp' %}" alt="product-img" />
-                                <img class="product__card--thumbnail__img product__secondary--img" src="{% static 'app_shop/img/product/main-product/product9.webp' %}" alt="product-img" />
+                                <img class="product__card--thumbnail__img product__primary--img" src="{{ product.image.url }}" alt="product-img" />
+                                {% comment %} <img class="product__card--thumbnail__img product__secondary--img" src="{% static 'app_shop/img/product/main-product/product9.webp' %}" alt="product-img" /> {% endcomment %}
                               </a>
                               {% comment %} <span class="product__badge">-20%</span> {% endcomment %}
                               <ul class="product__card--action d-flex align-items-center justify-content-center">
                                 <li class="product__card--action__list">
-                                  <a class="product__card--action__btn" title="Quick View" data-open="modal1" href="javascript:void(1)">
+                                  <a class="product__card--action__btn" title="Quick View" data-open="{{ product.slug }}" href="javascript:void(1)">
                                     <svg class="product__card--action__btn--svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M15.6952 14.4991L11.7663 10.5588C12.7765 9.4008 13.33 7.94381 13.33 6.42703C13.33 2.88322 10.34 0 6.66499 0C2.98997 0 0 2.88322 0 6.42703C0 9.97085 2.98997 12.8541 6.66499 12.8541C8.04464 12.8541 9.35938 12.4528 10.4834 11.6911L14.4422 15.6613C14.6076 15.827 14.8302 15.9184 15.0687 15.9184C15.2944 15.9184 15.5086 15.8354 15.6711 15.6845C16.0166 15.364 16.0276 14.8325 15.6952 14.4991ZM6.66499 1.67662C9.38141 1.67662 11.5913 3.8076 11.5913 6.42703C11.5913 9.04647 9.38141 11.1775 6.66499 11.1775C3.94857 11.1775 1.73869 9.04647 1.73869 6.42703C1.73869 3.8076 3.94857 1.67662 6.66499 1.67662Z" fill="currentColor"></path>
                                     </svg>
@@ -432,9 +432,13 @@
     </div>
   </div>
 
-  {% comment %} блок для быстрого просмотра {% endcomment %}
+  {% include 'app_shop/product/modal.html' with products=products %}
+
+
+
+  {% comment %} МОДАЛЬНОЕ ОКНО блок для быстрого просмотра
   <!-- Quickview Wrapper -->
-  <div class="modal" id="modal1" data-animation="slideInUp">
+  <div class="modal" id="modal2" data-animation="slideInUp">
     <div class="modal-dialog quickview__main--wrapper">
       <header class="modal-header quickview__header">
         <button class="close-modal quickview__close--btn" aria-label="close modal" data-close>✕</button>
@@ -699,5 +703,5 @@
       </div>
     </div>
   </div>
-  <!-- Quickview Wrapper End -->
+  <!-- Quickview Wrapper End --> {% endcomment %}
 {% endblock %}
